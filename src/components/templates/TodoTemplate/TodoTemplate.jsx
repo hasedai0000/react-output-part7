@@ -1,8 +1,8 @@
 import { TodoList } from "../../organisms/TodoList";
 import { InputForm } from "../../atoms/InputForm";
 import { AddTodo } from "../../organisms/AddTodo";
-import { useTodo } from "../../../hooks/useTodo";
 import styles from "./style.module.css";
+import { useTodoContext } from "../../../hooks/useTodoContext";
 
 export const TodoTemplate = () => {
   const {
@@ -15,7 +15,7 @@ export const TodoTemplate = () => {
     handleCompositionStart,
     handleCompositionEnd,
     handleDeleteTodo,
-  } = useTodo();
+  } = useTodoContext();
 
   return (
     <div className={styles.container}>
