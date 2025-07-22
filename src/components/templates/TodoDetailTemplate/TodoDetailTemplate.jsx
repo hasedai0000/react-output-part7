@@ -1,54 +1,36 @@
-import { TodoList } from "../../organisms/TodoList";
-import { InputForm } from "../../atoms/InputForm";
-import { AddTodo } from "../../organisms/AddTodo";
-import styles from "./style.module.css";
+import { useParams } from "react-router";
+
+import { BaseLayout } from "../../organisms/BaseLayout";
 import { useTodoContext } from "../../../hooks/useTodoContext";
+import { InputForm, TextArea } from "../../atoms";
+
+import styles from "./style.module.css";
 
 export const TodoDetailTemplate = () => {
-  const {
-    addInputValue,
-    searchKeyword,
-    filteredTodoList,
-    onChangeAddInputValue,
-    handleChangeSearchKeyword,
-    handleAddTodo,
-    handleCompositionStart,
-    handleCompositionEnd,
-    handleDeleteTodo,
-  } = useTodoContext();
+  const { originTodoList } = useTodoContext();
+  const { id } = useParams();
+  const todo = originTodoList.find((todo) => String(todo.id) === id);
 
   return (
-    <div className={styles.container}>
-      <h1 className={styles.title}>Todo List</h1>
-      {/* タスクを追加する */}
-      <section className={styles.common}>
-        <AddTodo
-          addInputValue={addInputValue}
-          onChangeTodo={onChangeAddInputValue}
-          handleAddTodo={handleAddTodo}
-          onCompositionStart={handleCompositionStart}
-          onCompositionEnd={handleCompositionEnd}
-        />
-      </section>
-      {/* 検索キーワードを入力する */}
-      <section className={styles.common}>
-        <InputForm
-          inputValue={searchKeyword}
-          placeholder={"検索キーワード"}
-          handleChangeValue={handleChangeSearchKeyword}
-        />
-      </section>
-      {/* タスクを表示する */}
-      <section className={styles.common}>
-        {filteredTodoList.length > 0 ? (
-          <TodoList
-            todoList={filteredTodoList}
-            handleDeleteTodo={handleDeleteTodo}
-          />
-        ) : (
-          <p className={styles.noList}>リストがありません</p>
-        )}
-      </section>
-    </div>
+    <BaseLayout title={"TodoDetail"}>
+      {!!todo && (
+        <div className={styles.container}>
+          <div className={styles.area}>
+            <InputForm
+              disabled={true}
+              inputValue={todo.title}
+              placeholder={"タイトル"}
+            />
+          </div>
+          <div className={styles.area}>
+            <TextArea
+              disabled={true}
+              inputValue={todo.content}
+              placeholder={"内容"}
+            />
+          </div>
+        </div>
+      )}
+    </BaseLayout>
   );
 };
