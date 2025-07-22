@@ -1,10 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { TodoPage } from "./pages";
+import { TodoProvider } from "./contexts/TodoContext";
+import { Router } from "./router";
 import "./index.css";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <TodoPage />
+    <TodoProvider>
+      <Router />
+    </TodoProvider>
   </React.StrictMode>
 );

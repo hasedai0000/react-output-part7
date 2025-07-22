@@ -1,10 +1,11 @@
 import { TodoList } from "../../organisms/TodoList";
 import { InputForm } from "../../atoms/InputForm";
 import { AddTodo } from "../../organisms/AddTodo";
+import { BaseLayout } from "../../organisms/BaseLayout";
 import styles from "./style.module.css";
 import { useTodoContext } from "../../../hooks/useTodoContext";
 
-export const TodoTemplate = () => {
+export const TodoListTemplate = () => {
   const {
     addInputValue,
     searchKeyword,
@@ -18,8 +19,7 @@ export const TodoTemplate = () => {
   } = useTodoContext();
 
   return (
-    <div className={styles.container}>
-      <h1 className={styles.title}>Todo List</h1>
+    <BaseLayout title={"TodoList"}>
       {/* タスクを追加する */}
       <section className={styles.common}>
         <AddTodo
@@ -49,6 +49,6 @@ export const TodoTemplate = () => {
           <p className={styles.noList}>リストがありません</p>
         )}
       </section>
-    </div>
+    </BaseLayout>
   );
 };

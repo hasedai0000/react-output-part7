@@ -1,0 +1,23 @@
+.li {
+  text-align: center;
+  list-style-type: none;
+}
+
+.li > a {
+  transition: 0.3s;
+  display: block;
+  background-color: rgba(52, 152, 219, 0.8);
+  text-decoration: none;
+  color: #fff;
+  font-size: 24px;
+  font-weight: bold;
+  width: 80px;
+  padding: 10px 20px;
+  border-radius: 10px;
+}
+
+.li > a:hover {
+  background-color: rgba(52, 152, 219, 1);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(52, 152, 219, 0.3);
+}
