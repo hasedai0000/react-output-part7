@@ -1,25 +1,11 @@
-import { useCallback } from "react";
-import { useNavigate } from "react-router";
 import { faTrashAlt, faFile } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import styles from "./style.module.css";
-import { NAVIGATION_PATH } from "../../../constants/navigation";
+import { useTodoList } from "./useTodoList";
 
 export const TodoList = ({ todoList, handleDeleteTodo }) => {
-  const navigate = useNavigate();
-
-  /**
-   * 詳細ページに遷移する処理
-   * @param {*} id
-   * @type {function(*): void}
-   */
-  const handleNavigateToDetail = useCallback(
-    (id) => {
-      navigate(`${NAVIGATION_PATH.DETAIL}${id}`);
-    },
-    [navigate]
-  );
+  const { handleNavigateToDetail } = useTodoList();
 
   return (
     <ul className={styles.list}>
@@ -32,7 +18,7 @@ export const TodoList = ({ todoList, handleDeleteTodo }) => {
               <FontAwesomeIcon
                 icon={faFile}
                 size="lg"
-                onClick={() => handleNavigateToDetail(todo.id)}
+                onClick={() => handleNavigateToDetail(todo.id, todo.title)}
               />
             </div>
             <div className={styles.far}>
