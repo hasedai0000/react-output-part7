@@ -1,11 +1,13 @@
 import { useCallback, useState } from "react";
-import { useNavigate } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import { NAVIGATION_PATH } from "../../../constants/navigation";
 
-export const useTodoCreateTemplate = ({ addTodo }) => {
+export const useTodoEditTemplate = ({ updateTodo, originTodoList }) => {
   const navigate = useNavigate();
-  const [inputTitle, setInputTitle] = useState("");
-  const [inputContent, setInputContent] = useState("");
+  const { id } = useParams();
+  const todo = originTodoList.find((todo) => String(todo.id) === id);
+  const [inputTitle, setInputTitle] = useState(todo?.title || "");
+  const [inputContent, setInputContent] = useState(todo?.content || "");
 
   /**
    * タイトルを変更する処理
@@ -26,24 +28,25 @@ export const useTodoCreateTemplate = ({ addTodo }) => {
   /**
    * 新規作成する処理
    */
-  const handleCreateTodo = useCallback(
+  const handleUpdateTodo = useCallback(
     (e) => {
       e.preventDefault();
-      if (!inputTitle && !inputContent) {
+      if (!!todo?.id && !inputTitle && !inputContent) {
         alert("タイトルと内容を入力してください");
         return;
       }
-      addTodo(inputTitle, inputContent);
+      updateTodo(todo.id, inputTitle, inputContent);
       navigate(NAVIGATION_PATH.TOP);
     },
-    [addTodo, inputTitle, inputContent, navigate]
+    [updateTodo, todo?.id, inputTitle, inputContent, navigate]
   );
 
   return {
+    todo,
     inputTitle,
     inputContent,
     handleChangeTitle,
     handleChangeContent,
-    handleCreateTodo,
+    handleUpdateTodo,
   };
 };

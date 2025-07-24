@@ -1,45 +1,98 @@
 .list {
   padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
 .todo {
   position: relative;
   display: flex;
   justify-content: space-between;
-  margin-bottom: 10px;
+  align-items: center;
   list-style: none;
-  line-height: 1.5;
-  font-weight: bold;
-  background-color: rgba(52, 152, 219, 0.8);
-  border-radius: 5px;
-  padding: 10px;
-  height: 50px;
+  background: var(--background-primary);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--border-color);
+  transition: all 0.3s ease;
+  min-height: 4rem;
+}
+
+.todo:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--primary-color);
 }
 
 .task {
   cursor: pointer;
   display: block;
-  padding-top: 8px;
-  padding-left: 10px;
-  font-size: 24px;
-  font-family: "Times New Roman", Times, serif;
-  color: #fff;
+  font-size: 1.125rem;
+  font-family: "Inter", sans-serif;
+  color: var(--text-primary);
+  font-weight: 500;
+  flex: 1;
+  transition: color 0.3s ease;
 }
+
+.task:hover {
+  color: var(--primary-color);
+}
+
 .area {
   display: flex;
-  justify-content: space-around;
-  margin-top: 10px;
-  width: 130px;
-  height: 30px;
+  gap: 0.5rem;
+  align-items: center;
 }
 
 .far {
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
-  /* position: absolute;
-  top: 24px;
-  right: 10px; */
-  width: 40px;
-  height: 40px;
-  color: #ff9900;
+  width: 2.5rem;
+  height: 2.5rem;
+  color: var(--text-secondary);
+  background: var(--background-secondary);
+  border-radius: var(--radius-md);
+  transition: all 0.3s ease;
+  border: 1px solid var(--border-color);
+}
+
+.far:hover {
+  transform: scale(1.1);
+  box-shadow: var(--shadow-sm);
+}
+
+.far:first-child:hover {
+  color: var(--accent-color);
+  background: rgba(16, 185, 129, 0.1);
+  border-color: var(--accent-color);
+}
+
+.far:nth-child(2):hover {
+  color: var(--warning-color);
+  background: rgba(245, 158, 11, 0.1);
+  border-color: var(--warning-color);
+}
+
+.far:last-child:hover {
+  color: var(--danger-color);
+  background: rgba(239, 68, 68, 0.1);
+  border-color: var(--danger-color);
+}
+
+@media (max-width: 768px) {
+  .todo {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .area {
+    width: 100%;
+    justify-content: flex-end;
+  }
 }

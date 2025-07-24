@@ -1,11 +1,15 @@
-import { faTrashAlt, faFile } from "@fortawesome/free-solid-svg-icons";
+import {
+  faTrashAlt,
+  faFile,
+  faPenToSquare,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import styles from "./style.module.css";
 import { useTodoList } from "./useTodoList";
 
 export const TodoList = ({ todoList, handleDeleteTodo }) => {
-  const { handleNavigateToDetail } = useTodoList();
+  const { handleNavigateToDetail, handleNavigateToEdit } = useTodoList();
 
   return (
     <ul className={styles.list}>
@@ -19,6 +23,14 @@ export const TodoList = ({ todoList, handleDeleteTodo }) => {
                 icon={faFile}
                 size="lg"
                 onClick={() => handleNavigateToDetail(todo.id, todo.title)}
+              />
+            </div>
+            <div className={styles.far}>
+              {/* https://www.digitalocean.com/community/tutorials/how-to-use-font-awesome-5-with-react-ja */}
+              <FontAwesomeIcon
+                icon={faPenToSquare}
+                size="lg"
+                onClick={() => handleNavigateToEdit(todo.id, todo.title)}
               />
             </div>
             <div className={styles.far}>

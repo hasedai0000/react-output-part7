@@ -17,5 +17,16 @@ export const useTodoList = () => {
     [navigate]
   );
 
-  return { handleNavigateToDetail };
+  /**
+   * 編集ページに遷移する処理
+   * @param {*} id
+   * @type {function(*): void}
+   */
+  const handleNavigateToEdit = useCallback(
+    (id) => {
+      navigate(`${NAVIGATION_PATH.EDIT}${id}`);
+    },
+    [navigate]
+  );
+  return { handleNavigateToDetail, handleNavigateToEdit };
 };

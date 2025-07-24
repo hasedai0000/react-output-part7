@@ -1,16 +1,39 @@
 .container {
-  width: 80%;
-  margin: 40px auto;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  min-height: 100vh;
 }
 
 .title {
   text-align: center;
-  font-family: "Times New Roman", Times, serif;
-  color: #000;
-  font-size: 48px;
+  font-family: "Inter", sans-serif;
+  color: var(--text-primary);
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin: 2rem 0 3rem 0;
+  background: linear-gradient(
+    135deg,
+    var(--primary-color),
+    var(--accent-color)
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .common {
-  width: 80%;
-  margin: 40px auto;
+  width: 100%;
+  margin: 2rem auto;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 1rem;
+  }
+
+  .title {
+    font-size: 2rem;
+    margin: 1.5rem 0 2rem 0;
+  }
 }

@@ -48,7 +48,7 @@ export const useTodo = () => {
   );
 
   const deleteTodo = (id, title) => {
-    if (window.confirm(`${title}を削除しますか？`)) {
+    if (window.confirm(`「${title}」を削除しますか？`)) {
       setOriginTodoList(originTodoList.filter((t) => t.id !== id));
     }
   };

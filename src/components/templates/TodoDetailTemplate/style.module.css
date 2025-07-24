@@ -1,8 +1,25 @@
 .container {
-  width: 80%;
-  margin: 40px auto;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
 }
 
 .area {
-  margin-top: 40px;
+  margin-top: 2rem;
+  background: var(--background-primary);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  padding: 2rem;
+  border: 1px solid var(--border-color);
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 1rem;
+  }
+
+  .area {
+    padding: 1.5rem;
+    margin-top: 1rem;
+  }
 }
