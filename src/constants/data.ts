@@ -1,7 +1,9 @@
+import { Todo } from "../types";
+
 /**
  * Todoリストの処理値
  */
-export const INIT_TODO_LIST = [
+export const INIT_TODO_LIST: Todo[] = [
   {
     id: 1,
     title: "Reactを勉強する",
@@ -17,4 +19,4 @@ export const INIT_TODO_LIST = [
 /**
  * Todo採番IDの初期値
  */
-export const INIT_UNIQUE_ID = INIT_TODO_LIST.length;
+export const INIT_UNIQUE_ID: number = INIT_TODO_LIST.length;

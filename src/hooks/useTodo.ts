@@ -1,5 +1,5 @@
 import { useState, useCallback } from "react";
-import { INIT_TODO_LIST, INIT_UNIQUE_ID } from "../constants/data.js";
+import { INIT_TODO_LIST, INIT_UNIQUE_ID } from "../constants/data";
 
 export const useTodo = () => {
   /** Todo List */
@@ -10,11 +10,11 @@ export const useTodo = () => {
   /** actions */
   /**
    * Todo新規登録処理
-   * @param {*} title
-   * @param {*} content
+   * @param {string} title
+   * @param {string} content
    */
   const addTodo = useCallback(
-    (title, content) => {
+    (title: string, content: string) => {
       const nextUniqueId = uniqueId + 1;
       const newTodo = [
         ...originTodoList,
@@ -27,11 +27,17 @@ export const useTodo = () => {
       setOriginTodoList(newTodo);
       setUniqueId(nextUniqueId);
     },
-    [originTodoList]
+    [originTodoList, uniqueId]
   );
 
+  /**
+   * Todo更新処理
+   * @param {number} id
+   * @param {string} title
+   * @param {string} content
+   */
   const updateTodo = useCallback(
-    (id, title, content) => {
+    (id: number, title: string, content: string) => {
       const updatedTodoList = originTodoList.map((todo) => {
         if (id === todo.id) {
           return {
@@ -47,11 +53,20 @@ export const useTodo = () => {
     [originTodoList]
   );
 
-  const deleteTodo = (id, title) => {
-    if (window.confirm(`「${title}」を削除しますか？`)) {
-      setOriginTodoList(originTodoList.filter((t) => t.id !== id));
-    }
-  };
+  /**
+   * Todo削除処理
+   * @param {number} id
+   * @param {string} title
+   */
+  const deleteTodo = useCallback(
+    (targetId: number, targetTitle: string) => {
+      if (window.confirm(`「${title}」を削除しますか？`)) {
+        const newTodoList = originTodoList.filter((t) => t.id !== targetId);
+        setOriginTodoList(newTodoList);
+      }
+    },
+    [originTodoList]
+  );
 
   return {
     originTodoList,

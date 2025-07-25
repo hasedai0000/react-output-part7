@@ -4,7 +4,12 @@ import { TodoProvider } from "./contexts/TodoContext";
 import { Router } from "./router";
 import "./index.css";
 
-ReactDOM.createRoot(document.getElementById("root")).render(
+const rootElement = document.getElementById("root");
+if (!rootElement) {
+  throw new Error("Root element not found");
+}
+
+ReactDOM.createRoot(rootElement).render(
   <React.StrictMode>
     <TodoProvider>
       <Router />

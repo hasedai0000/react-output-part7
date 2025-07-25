@@ -1,6 +1,17 @@
+import { ChangeEvent, KeyboardEvent, CompositionEvent, FC } from "react";
 import styles from "./style.module.css";
 
-export const InputForm = ({
+type InputFormProps = {
+  disabled?: boolean;
+  inputValue: string;
+  placeholder: string;
+  handleChangeValue: (e: ChangeEvent<HTMLInputElement>) => void;
+  handleKeyDown?: (e: KeyboardEvent<HTMLInputElement>) => void;
+  onCompositionStart?: (e: CompositionEvent<HTMLInputElement>) => void;
+  onCompositionEnd?: (e: CompositionEvent<HTMLInputElement>) => void;
+};
+
+export const InputForm: FC<InputFormProps> = ({
   disabled = false,
   inputValue,
   placeholder,
